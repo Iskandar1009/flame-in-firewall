@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Flame in Freefall — demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@page { size: 1280px 720px; margin: 0; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; background: #04060c; color: #e9eef7; font-family: Inter, system-ui, sans-serif; }
+.s { width: 1280px; height: 720px; padding: 56px 64px; position: relative; overflow: hidden; page-break-after: always;
+  background: radial-gradient(900px 520px at 85% -10%, rgba(58,123,255,.20), transparent 60%), #04060c; }
+h1, h2, .d { font-family: "Space Grotesk", sans-serif; letter-spacing: -0.02em; margin: 0; }
+h1 { font-size: 76px; line-height: 1.02; font-weight: 600; }
+h2 { font-size: 40px; line-height: 1.1; font-weight: 600; max-width: 1000px; }
+.eb { font: 500 13px ui-monospace, Menlo, monospace; letter-spacing: .18em; text-transform: uppercase; color: #6cc4ff; margin-bottom: 14px; }
+p { font-size: 21px; line-height: 1.5; color: #aab4c8; margin: 14px 0 0; }
+.g { background: linear-gradient(90deg, #6cc4ff, #fff, #3a7bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.row { display: flex; gap: 40px; align-items: flex-start; margin-top: 26px; }
+.shot { border: 1px solid rgba(255,255,255,.16); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.6); flex: none; }
+.shot img { display: block; width: 100%; }
+ul { margin: 0; padding: 0; list-style: none; }
+li { font-size: 19px; line-height: 1.42; color: #c9d2e3; padding-left: 20px; position: relative; margin-bottom: 15px; }
+li:before { content: ""; position: absolute; left: 0; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: #6cc4ff; }
+li b, p b { color: #fff; font-weight: 500; }
+.big { font-family: "Space Grotesk"; font-size: 84px; font-weight: 600; color: #ffd166; line-height: 1; }
+.cap { font-size: 16px; color: #94a0b8; margin-top: 6px; line-height: 1.35; }
+.n { position: absolute; right: 64px; bottom: 34px; font: 12px ui-monospace, Menlo, monospace; color: #64708a; }
+.f { position: absolute; left: 64px; right: 130px; bottom: 30px; line-height: 1.5; font: 12px ui-monospace, Menlo, monospace; color: #64708a; }
+.card { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.035); border-radius: 16px; padding: 22px 24px; flex: 1; }
+.card .d { font-size: 22px; font-weight: 500; color: #fff; }
+.card p { font-size: 16.5px; margin-top: 8px; line-height: 1.45; }
+a { color: #6cc4ff; text-decoration: none; }
+</style></head><body>
+
+<section class="s">
+  <div style="position:absolute;right:-60px;top:70px;width:640px" class="shot"><img src="img/hero.png" style="width:1280px;margin-left:-640px"></div>
+  <div style="margin-top:120px;max-width:620px">
+    <div class="eb">NASA Space Apps Challenge 2026 · Dushanbe</div>
+    <h1>Flame in<br><span class="g">Freefall</span></h1>
+    <p style="font-size:24px;max-width:560px">An AI dashboard that turns NASA's microgravity combustion data into fire-safety answers for the Moon base, rovers and Mars.</p>
+    <p style="font-size:18px;margin-top:34px"><a href="https://flame-in-freefall-theta.vercel.app">flame-in-freefall-theta.vercel.app</a></p>
+  </div>
+</section>
+
+<section class="s">
+  <div class="eb">The problem</div>
+  <h2>Fire is the accident a crew cannot run from, and the data that could prevent it is hard to use.</h2>
+  <div class="row" style="margin-top:44px">
+    <div class="card"><div class="big" style="color:#6cc4ff">26</div><div class="cap">combustion investigations in NASA's PSI repository</div></div>
+    <div class="card"><div class="big" style="color:#6cc4ff">14 TB</div><div class="cap">of raw files, each record in its own format</div></div>
+    <div class="card"><div class="big" style="color:#6cc4ff">30%+</div><div class="cap">oxygen expected in the Moon base and rovers, against 21% on Earth</div></div>
+  </div>
+  <p style="max-width:1050px;margin-top:38px">In microgravity a flame becomes a blue sphere fed by diffusion, so Earth experience does not transfer. NASA has studied this for decades, but the results are hard to <b>find</b>, harder to <b>compare</b>, and harder yet to <b>interpret</b>.</p>
+  <div class="n">2 / 7</div>
+</section>
+
+<section class="s">
+  <div class="eb">Our solution · objective 1</div>
+  <h2>Pick where the crew will live. See which experiments speak to it.</h2>
+  <div class="row">
+    <div class="shot" style="width:700px"><img src="img/advisor.png"></div>
+    <ul style="margin-top:8px">
+      <li><b>Five habitats:</b> station, spacecraft, Moon base, rover, Mars base, each with its oxygen, pressure and gravity.</li>
+      <li><b>All 26 investigations ranked</b> for the chosen habitat and safety focus: prevention, detection or suppression.</li>
+      <li><b>No black box:</b> every score opens into its four parts, and the atmosphere match is computed from real test conditions.</li>
+      <li><b>AI brief per habitat:</b> what the data supports, what it cannot tell you, what to do now.</li>
+    </ul>
+  </div>
+  <div class="n">3 / 7</div>
+</section>
+
+<section class="s">
+  <div class="eb">What the data revealed</div>
+  <h2>The crew is going where the experiments have not been.</h2>
+  <div class="row">
+    <div class="shot" style="width:720px"><img src="img/map.png"></div>
+    <div style="flex:1">
+      <div class="big">0 <span style="font-size:30px;color:#fff">of 140</span></div>
+      <div class="cap">solid-material tests above 22.2% oxygen. Fabrics and plastics are what a cabin is made of.</div>
+      <div class="big" style="margin-top:26px">17</div>
+      <div class="cap">tests inside the Moon-base atmosphere, all on liquid droplets.</div>
+      <div class="big" style="margin-top:26px">0</div>
+      <div class="cap">tests at lunar or Martian gravity.</div>
+    </div>
+  </div>
+  <div class="f">Each dot is one of 1,193 tests parsed from official PSI experimental tables. Yellow box: 30–34% O2 at 8.2–10.2 psi.</div>
+  <div class="n">4 / 7</div>
+</section>
+
+<section class="s">
+  <div class="eb">Objectives 2 and 3</div>
+  <h2>Data for modellers. Evidence for equipment designers.</h2>
+  <div class="row">
+    <div class="shot" style="width:640px"><img src="img/equipment.png"></div>
+    <ul style="margin-top:8px">
+      <li><b>One table, one click:</b> every test with fuel, oxygen, pressure, diluent and outcome, downloadable as CSV for predictive modelling.</li>
+      <li><b>“For modellers” view:</b> which quantities each investigation offers, best sources first.</li>
+      <li><b>“For equipment” view:</b> which smoke detectors, extinguishing agents and material screening tests each investigation informs.</li>
+      <li><b>Side-by-side comparison</b> of up to three investigations: fuels, conditions, sensors, limits.</li>
+      <li><b>Six knowledge gaps</b> counted from the tables, each with the closest evidence and what would close it.</li>
+    </ul>
+  </div>
+  <div class="n">5 / 7</div>
+</section>
+
+<section class="s">
+  <div class="eb">Super intelligence, kept honest</div>
+  <h2>Ask a question. Get an answer with its sources, or a clear “the data does not cover this”.</h2>
+  <div class="row">
+    <div class="shot" style="width:720px"><img src="img/chat.png"></div>
+    <ul style="margin-top:8px">
+      <li>The assistant reads <b>only the PSI records</b> and the tables behind the dashboard.</li>
+      <li><b>Every claim cites its investigation;</b> one click opens the record and the NASA source.</li>
+      <li>It separates <b>results from aims:</b> only 7 of 26 records state results, and the dashboard says so.</li>
+      <li>General physics is allowed only when <b>labelled as background</b>.</li>
+    </ul>
+  </div>
+  <div class="n">6 / 7</div>
+</section>
+
+<section class="s">
+  <div class="eb">How it was built · impact</div>
+  <h2>Every number on the page can be traced to NASA.</h2>
+  <div class="row" style="margin-top:34px;gap:20px">
+    <div class="card"><div class="d">1 · Collect</div><p>26 PSI records and 28 official experimental tables, through the repository's public interface.</p></div>
+    <div class="card"><div class="d">2 · Parse</div><p>A script reads oxygen, pressure, fuel and outcome from each table. Assumptions are marked.</p></div>
+    <div class="card"><div class="d">3 · Interpret</div><p>Claude returns a fixed set of fields per record, using only that record.</p></div>
+    <div class="card"><div class="d">4 · Rank</div><p>A published formula: relevance, safety pillar, atmosphere match, material realism.</p></div>
+  </div>
+  <ul style="margin-top:36px;columns:2;column-gap:50px">
+    <li><b>For students and researchers:</b> a way into 14 TB of data in minutes.</li>
+    <li><b>For engineers:</b> what to rely on, and what to test next, before designing a 30% oxygen cabin.</li>
+    <li><b>On Earth:</b> submarines, aircraft and mines share the same sealed-cabin fire problem.</li>
+    <li><b>Next:</b> add LUCI and FM2 partial-gravity data when NASA releases it.</li>
+  </ul>
+  <div class="f">Live: flame-in-freefall-theta.vercel.app · Code: github.com/Iskandar1009/flame-in-firewall · Data: NASA PSI (CC0-1.0)<br>Slides, site code and summaries prepared with AI assistance (Claude). Screenshots are of the live project.</div>
+  <div class="n">7 / 7</div>
+</section>
+</body></html>

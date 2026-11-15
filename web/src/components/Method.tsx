@@ -22,7 +22,7 @@ export default function Method() {
         </div>
         <div className="mt-10 grid gap-6 border-t border-line pt-8 text-sm leading-relaxed text-muted md:grid-cols-2">
           <p>
-            <span className="text-fg">Limits.</span> Two records in the search results are not combustion science and score zero rather than being hidden. PSI records describe aims more often than results, so findings are labelled accordingly. Scores are a reading aid for researchers, not a safety certification.
+            <span className="text-fg">Limits.</span> Two records in the search results are not combustion science and score zero rather than being hidden. PSI records describe aims more often than results, so findings are labelled accordingly. Scores are a reading aid for researchers, not a safety certification. Summaries, briefs and chat answers are AI-generated (Claude) and labelled where they appear; the code of this site was written with AI assistance.
           </p>
           <p>
             <span className="text-fg">Sources.</span>{" "}
