@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import { BY_ID, TESTS } from "@/lib/data";
 import { EXPLORATION_ZONE, REFERENCES } from "@/lib/habitats";
 import type { TestPoint } from "@/lib/types";
+import { Download } from "lucide-react";
+import { download, testsToCsv } from "@/lib/csv";
 import { PHASE_COLOR, Section, Seg } from "./ui";
 
 const W = 880, H = 520, M = { l: 58, r: 20, t: 18, b: 46 };
@@ -136,6 +138,15 @@ export default function FlamMap({ onOpen }: { onOpen: (id: string) => void }) {
               {hover.t.matrix && <div className="mt-1.5 text-[10px] text-dim">Planned test-matrix condition, not an individual run.</div>}
             </div>
           )}
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-3 px-1">
+            <span className="text-xs text-muted">One unified table of every test shown, ready for modelling.</span>
+            <button
+              onClick={() => { const rows = TESTS.filter((t) => !off.has(t.phase)); download(`psi-combustion-tests-${rows.length}.csv`, testsToCsv(rows)); }}
+              className="inline-flex items-center gap-1.5 rounded-full border border-line-2 px-3.5 py-1.5 text-xs text-fg transition hover:border-flame/60 hover:text-flame"
+            >
+              <Download size={13} /> Download {TESTS.filter((t) => !off.has(t.phase)).length.toLocaleString()} tests (CSV)
+            </button>
+          </div>
           <p className="mt-2 px-1 text-[11px] leading-relaxed text-dim">
             Filled dots: oxygen in the surrounding atmosphere. Hollow dots: inverse flames, where the value is the oxidizer stream. Faint dots: FLEX-2 planned matrix.
             {mode === "outcome" && " Green: flame went out on its own. Red: fuel burned to completion. Orange: flow was stopped. Grey: no outcome recorded."}

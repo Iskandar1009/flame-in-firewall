@@ -8,6 +8,8 @@ import type { Pillar, Study } from "@/lib/types";
 import { Dots, PHASE_COLOR, PILLAR_META, PillarChips, Section, Seg } from "./ui";
 
 type PF = "all" | Pillar;
+type Lens = "overview" | "model" | "equipment";
+const hasEquipment = (s: Study) => !/^none/i.test(s.ai.informsEquipment.trim());
 const PHASES = ["all", "solid", "liquid", "gas", "aerosol"] as const;
 
 export default function Explorer({ onOpen }: { onOpen: (id: string) => void }) {
@@ -15,6 +17,7 @@ export default function Explorer({ onOpen }: { onOpen: (id: string) => void }) {
   const [pillar, setPillar] = useState<PF>("all");
   const [phase, setPhase] = useState<(typeof PHASES)[number]>("all");
   const [sort, setSort] = useState<"relevance" | "data" | "tests">("relevance");
+  const [lens, setLens] = useState<Lens>("overview");
   const [cmp, setCmp] = useState<string[]>([]);
   const [showCmp, setShowCmp] = useState(false);
 
@@ -25,10 +28,12 @@ export default function Explorer({ onOpen }: { onOpen: (id: string) => void }) {
       if (phase !== "all" && s.ai.fuelPhase !== phase) return false;
       if (!needle) return true;
       return [s.id, s.name, s.title, s.ai.oneLiner, s.ai.fuels.join(" "), s.hardware, s.ai.measurements.join(" ")].join(" ").toLowerCase().includes(needle);
-    }).sort((a, b) =>
-      sort === "data" ? b.bytes - a.bytes : sort === "tests" ? b.nTests - a.nTests
+    }).filter((s) => lens !== "equipment" || hasEquipment(s)).sort((a, b) =>
+      lens === "model" ? b.ai.modelingValue - a.ai.modelingValue || b.nTests - a.nTests || a.num - b.num
+        : lens === "equipment" ? Math.max(b.ai.pillars.detection, b.ai.pillars.suppression) - Math.max(a.ai.pillars.detection, a.ai.pillars.suppression) || b.ai.fireSafetyRelevance - a.ai.fireSafetyRelevance
+        : sort === "data" ? b.bytes - a.bytes : sort === "tests" ? b.nTests - a.nTests
         : b.ai.fireSafetyRelevance - a.ai.fireSafetyRelevance || b.ai.materialRealism - a.ai.materialRealism || a.num - b.num);
-  }, [q, pillar, phase, sort]);
+  }, [q, pillar, phase, sort, lens]);
 
   const toggle = (id: string) => setCmp((c) => (c.includes(id) ? c.filter((x) => x !== id) : c.length < 3 ? [...c, id] : c));
 
@@ -37,8 +42,14 @@ export default function Explorer({ onOpen }: { onOpen: (id: string) => void }) {
       id="explore"
       eyebrow="04 · Investigations"
       title="Every combustion investigation in PSI, in one readable format."
-      lead="Objectives, fuels, test conditions, sensors and findings are extracted by AI from each official record, so different experiments can finally be read side by side. Select up to three to compare."
+      lead="Objectives, fuels, test conditions, sensors and findings are extracted by AI from each official record, so different experiments can be read side by side. Switch the view to see what each one offers a modeller or an equipment designer."
     >
+      <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <Seg<Lens> layoutId="ex-lens" value={lens} onChange={setLens} options={[{ value: "overview", label: "Overview" }, { value: "model", label: "For modellers" }, { value: "equipment", label: "For equipment" }]} />
+        <span className="text-sm text-muted">
+          {lens === "overview" ? "What each investigation did." : lens === "model" ? "Which data you can extract to predict flammability, best sources first." : "Which detectors, extinguishers and screening tests each investigation informs."}
+        </span>
+      </div>
       <div className="flex flex-wrap items-center gap-3">
         <label className="flex h-10 min-w-[220px] flex-1 items-center gap-2 rounded-full border border-line bg-panel px-4 focus-within:border-flame/60">
           <Search size={15} className="text-dim" />
@@ -55,7 +66,7 @@ export default function Explorer({ onOpen }: { onOpen: (id: string) => void }) {
             </button>
           ))}
         </div>
-        <div className="flex items-center gap-2 text-xs text-dim">
+        <div className={`flex items-center gap-2 text-xs text-dim ${lens !== "overview" ? "invisible" : ""}`}>
           Sort
           {(["relevance", "tests", "data"] as const).map((s) => (
             <button key={s} onClick={() => setSort(s)} className={`rounded-full px-2.5 py-1 ${sort === s ? "bg-panel-2 text-white" : "hover:text-white"}`}>
@@ -82,13 +93,17 @@ export default function Explorer({ onOpen }: { onOpen: (id: string) => void }) {
                     {sel ? <Check size={14} /> : <Plus size={14} />}
                   </button>
                 </div>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{s.ai.oneLiner}</p>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+                  {lens === "model" && <span className="mb-1 block text-xs text-flame">Extractable for models</span>}
+                  {lens === "equipment" && <span className="mb-1 block text-xs text-ok">Informs</span>}
+                  {lens === "overview" ? s.ai.oneLiner : lens === "model" ? s.ai.modelingNote : s.ai.informsEquipment}
+                </p>
                 <div className="mt-4 flex flex-wrap items-center gap-1.5">
                   <span className="chip capitalize"><span className="h-2 w-2 rounded-full" style={{ background: PHASE_COLOR[s.ai.fuelPhase] }} />{s.ai.fuelPhase === "none" ? "not combustion" : s.ai.fuelPhase}</span>
                   <PillarChips pillars={s.ai.pillars} />
                 </div>
                 <div className="mt-4 grid grid-cols-3 gap-2 border-t border-line pt-3 text-[11px] text-dim">
-                  <span>Relevance<br /><span className="mt-1 inline-block"><Dots value={s.ai.fireSafetyRelevance} /></span></span>
+                  <span>{lens === "model" ? "Modelling value" : "Relevance"}<br /><span className="mt-1 inline-block"><Dots value={lens === "model" ? s.ai.modelingValue : s.ai.fireSafetyRelevance} /></span></span>
                   <span>Tests parsed<br /><b className="font-mono text-[13px] font-normal text-fg">{s.nTests || "—"}</b></span>
                   <span>Data<br /><b className="font-mono text-[13px] font-normal text-fg">{fmtBytes(s.bytes)}</b></span>
                 </div>
