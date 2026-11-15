@@ -1,0 +1,203 @@
+{
+ "station": {
+  "bottomLine": "For an ISS-class cabin at 21% O2, 14.7 psi and microgravity, PSI data match the habitat unusually well: 252 tests sit at this oxygen level and all flight tests are in microgravity, and the large-scale SAFFIRE burns were run near 21.5-22% O2. The biggest caveat is that only 28 of those 252 tests involve solid materials, and most records state aims rather than results, so few material-level conclusions can be drawn directly.",
+  "know": [
+   {
+    "text": "At about 21.5% O2 and 20 cm/s airflow in microgravity, a large cotton-fiberglass fabric burned for 420 s in concurrent flow versus 70 s in opposed flow, so ventilation direction relative to a fabric fire strongly affects burn duration.",
+    "ids": [
+     "PSI-98"
+    ]
+   },
+   {
+    "text": "At about 22% O2 and 20 cm/s flow, thin silicone samples did not sustain burning in microgravity although several burned in 1-g, while SIBAL fabric spread flame over its full 29 cm length, so microgravity flammability ranking depends on the material.",
+    "ids": [
+     "PSI-99"
+    ]
+   },
+   {
+    "text": "Emulated condensed-fuel flames on porous burners self-extinguished quickly at 21% O2 when ventilation stopped, unlike in elevated-oxygen atmospheres, though investigators call these results preliminary.",
+    "ids": [
+     "PSI-20"
+    ]
+   },
+   {
+    "text": "For methanol and heptane droplets, the FLEX table locates the oxygen and CO2, N2 or He diluent levels below which flames self-extinguish, giving a basis for sizing inert-gas suppression of small liquid fires.",
+    "ids": [
+     "PSI-69"
+    ]
+   }
+  ],
+  "dontKnow": [
+   "Only 28 of the 252 tests at this oxygen level are solid-material tests, versus 117 liquid-droplet and 107 gas tests, so cabin-material flammability rests on a thin base.",
+   "Smoke-detection investigations (SAME, SAME-R) state aims only, and none of the 252 tests at this oxygen level are listed as smoke-detection tests, so detector adequacy for microgravity smoke is not established by results here.",
+   "Large-scale fabric results cover essentially one flow speed (20 cm/s) near 21.5-22.1% O2, so behavior at other ventilation speeds in the cabin is not quantified."
+  ],
+  "actions": [
+   "Use the SAFFIRE-I and SAFFIRE-II outcomes to prioritize controlling concurrent-flow exposure of fabrics such as SIBAL near cabin ventilation paths, since concurrent flow sustained burning 420 s versus 70 s opposed.",
+   "Extract extinction boundaries from the FLEX tables at 21% O2 and 1 atm to estimate the CO2 or N2 dilution needed to suppress small liquid-fuel fires in the cabin.",
+   "Do not rely on 1-g screening alone for material ranking; compare SAFFIRE-II microgravity results, and BASS/BASS-II data once results are extracted, against NASA-STD-6001 Test 1 for the specific cabin materials in use."
+  ],
+  "model": "claude-opus-5-5"
+ },
+ "transit": {
+  "bottomLine": "PSI data cover this habitat's microgravity and normal-air oxygen reasonably well, with 341 tests at 21-26.5% O2, but solid-material coverage is thin: 52 solid tests at this oxygen level, and no solid test exceeded 22.2% O2. The biggest caveat is that the pre-spacewalk condition of lowered pressure and raised oxygen is essentially untested for solid cabin materials, and most solid-material records do not state test pressure.",
+  "know": [
+   {
+    "text": "At about 21.5% O2 and 20 cm/s airflow in microgravity, a large cotton-fiberglass fabric burned for 420 s in concurrent flow versus 70 s in opposed flow, so the direction of cabin ventilation relative to a fabric fire strongly affects how long it burns.",
+    "ids": [
+     "PSI-98"
+    ]
+   },
+   {
+    "text": "At about 22% O2 and 20 cm/s flow in microgravity, thin silicone samples did not sustain burning although several burned in 1-g, while SIBAL fabric spread flame over its full 29 cm length, so microgravity flammability ranking depends on the material.",
+    "ids": [
+     "PSI-99"
+    ]
+   },
+   {
+    "text": "In emulated condensed-fuel flames on ISS, stopping ventilation was not enough to extinguish flames in elevated-oxygen atmospheres, though flames at 21% O2 self-extinguished quickly; the investigators call these results preliminary.",
+    "ids": [
+     "PSI-20"
+    ]
+   },
+   {
+    "text": "For methanol and heptane droplets in microgravity, the FLEX table locates the oxygen level (between 12% and 34%) and the CO2, N2 or He dilution below which flames self-extinguish, which helps size inert-gas suppression of small liquid fires.",
+    "ids": [
+     "PSI-69"
+    ]
+   }
+  ],
+  "dontKnow": [
+   "Solid-material behavior in the upper part of this habitat's oxygen range is unknown, because the highest oxygen in any of the 140 solid-material tests was 22.2%, against an assumed cabin maximum of 26.5%.",
+   "The combined effect of reduced pressure (down to 10.2 psi) and raised oxygen on solid cabin materials is not established, because pressure is unstated for the solid-material flight records (PSI-25, PSI-26, PSI-98, PSI-99, PSI-100).",
+   "Whether existing smoke detectors see microgravity smoke from Kapton, Teflon, Pyrell and silicone rubber is not answered in the catalogue, because all 3 smoke-measurement investigations (PSI-101, PSI-102, PSI-115) state aims only."
+  ],
+  "actions": [
+   "Treat the stop-ventilation response as insufficient for extinguishment above 21% O2, given PSI-20's preliminary result, and plan inert-gas or agent-based suppression for the oxygen-enriched pre-spacewalk configuration, using the PSI-69 dilution limits as a starting point for liquid fuels.",
+   "Place fabrics and stowage so that cabin airflow does not run concurrent with likely flame spread directions, since PSI-98 measured 420 s of concurrent burning versus 70 s opposed at 20 cm/s.",
+   "Extract BASS-II minimum-oxygen and flow limits and the SAME/SAME-R smoke particle data from the source datasets, and flag the 22.2-26.5% O2, reduced-pressure regime as a gap that needs new solid-material microgravity tests."
+  ],
+  "model": "claude-opus-5-5"
+ },
+ "moonbase": {
+  "bottomLine": "PSI data give only indirect coverage of Moon base fire safety: 45 tests reach the habitat's oxygen level, but all are droplet or gas flames, and none use solid materials or partial gravity. The biggest caveat is that no solid-material test exceeded 22.2% O2, so material flammability at 30-34% O2 and 8.2-10.2 psi is untested in PSI.",
+  "know": [
+   {
+    "text": "In ACME BRE, stopping ventilation did not extinguish emulated condensed-fuel flames in elevated-oxygen atmospheres (tested up to 40% O2), while flames at 21% O2 self-extinguished quickly; the investigators call these results preliminary.",
+    "ids": [
+     "PSI-20"
+    ]
+   },
+   {
+    "text": "FLEX mapped microgravity extinction limits for methanol and heptane droplets across 12-34% O2 with CO2, N2 and He diluents, a range that spans the base's 30-34% O2.",
+    "ids": [
+     "PSI-69"
+    ]
+   },
+   {
+    "text": "At about 22% O2 and 20 cm/s flow, thin silicone samples did not sustain burning in microgravity although several burned in 1 g, while SIBAL fabric spread its full 29 cm, so flammability ranking depends on the material.",
+    "ids": [
+     "PSI-99"
+    ]
+   },
+   {
+    "text": "At about 21.5% O2 and 20 cm/s flow, large cotton-fiberglass fabric burned for 420 s in concurrent flow versus 70 s in opposed flow, so ventilation direction strongly affects burn duration.",
+    "ids": [
+     "PSI-98"
+    ]
+   }
+  ],
+  "dontKnow": [
+   "How habitat solids burn at 30-34% O2: PSI has 0 solid-material tests at this oxygen level, and the highest oxygen in any of its 140 solid tests is 22.2%.",
+   "How fires behave at lunar gravity: PSI has 0 tests at 0.17 g, so buoyant flow and flame spread between microgravity and 1 g are unmeasured.",
+   "Whether the elevated-oxygen results hold at 8.2-10.2 psi: ACME BRE's summary table omits per-test pressures, and SAFFIRE-II ran at an unstated pressure."
+  ],
+  "actions": [
+   "Extract the FLEX extinction limits for the 30-34% O2 cases at the lowest tested pressures to estimate diluent levels needed to suppress small liquid-fuel fires in the base.",
+   "Do not count on stopping ventilation as the only suppression method in a 30%+ O2 cabin, given the ACME BRE finding, and plan active suppression instead.",
+   "Treat SAFFIRE-I/II and BASS-II solid results as lower bounds, and propose material tests at 30-34% O2, 8.2-10.2 psi and partial gravity to close the 0-test gap."
+  ],
+  "model": "claude-opus-5-5"
+ },
+ "rover": {
+  "bottomLine": "PSI data covers the rover's 30-34% O2 atmosphere only through 45 gas and liquid-droplet tests, with no solid-material tests at that oxygen level and no tests at 0.17 g. The biggest caveat is that the cabin materials most likely to burn in a small sealed rover have only been tested at or below 22.2% O2 in microgravity, so their behavior in this atmosphere is unmeasured.",
+  "know": [
+   {
+    "text": "In ISS tests of gaseous flames emulating burning solids, stopping ventilation was not enough to extinguish flames in elevated-oxygen atmospheres, while flames at 21% O2 self-extinguished quickly; the investigators call these results preliminary.",
+    "ids": [
+     "PSI-20"
+    ]
+   },
+   {
+    "text": "FLEX mapped oxygen and diluent extinction limits for methanol and heptane droplets in microgravity across 12-34% O2 with CO2, N2 and He, a range that spans the rover's 30-34% O2.",
+    "ids": [
+     "PSI-69"
+    ]
+   },
+   {
+    "text": "At about 21.5% O2 and 20 cm/s flow in microgravity, a large cotton-fiberglass fabric burned for 420 s in concurrent flow versus 70 s in opposed flow, so fan-driven flow direction relative to a fire strongly affects burn duration.",
+    "ids": [
+     "PSI-98"
+    ]
+   },
+   {
+    "text": "For the hydrocarbon and DME fuels tested, extinguishing the hot flame did not necessarily end reaction, because a cool or warm flame regime can persist beyond the hot-flame extinction limit.",
+    "ids": [
+     "PSI-142"
+    ]
+   }
+  ],
+  "dontKnow": [
+   "How cabin solids such as fabrics, plastics and wire insulation burn at 30-34% O2: PSI holds 0 solid-material tests at this oxygen level, and the highest oxygen in any of its 140 solid tests is 22.2%.",
+   "How flames behave under lunar gravity in the rover: PSI holds 0 tests at 0.17 g and no partial-gravity combustion data at all.",
+   "How the rover's reduced 8.2-10.2 psi pressure combines with elevated oxygen for solids: key large-scale solid tests such as SAFFIRE-II ran at about 22% O2 with pressure not stated."
+  ],
+  "actions": [
+   "Use the FLEX extinction tables to estimate how much CO2, N2 or He dilution would suppress small liquid-fuel fires near 30-34% O2, checking that the table's pressures match the rover's 8.2-10.2 psi.",
+   "Given PSI-20's preliminary finding that stopping ventilation did not extinguish flames at elevated oxygen, avoid relying on fan shutdown alone and plan active suppression for a crew of two far from base.",
+   "Propose solid-material flammability tests at 30-34% O2 and 8.2-10.2 psi, ideally in partial gravity, using the BASS-II and SAFFIRE materials and methods as a baseline for comparison."
+  ],
+  "model": "claude-opus-5-5"
+ },
+ "mars": {
+  "bottomLine": "PSI data cover a Mars base at 30-34% O2 and 0.38 g only indirectly: 45 tests fall at this oxygen level, all liquid-droplet or gas-flame tests, with no solid-material tests and no partial-gravity tests. The biggest caveat is that every solid-material result was obtained at or below 22.2% O2 in microgravity, so material flammability at Mars-base oxygen and 0.38 g is not established by this data.",
+  "know": [
+   {
+    "text": "In ISS tests of gaseous flames emulating condensed-fuel burning, stopping ventilation did not extinguish the flames in elevated-oxygen atmospheres, while flames at 21% O2 self-extinguished quickly; the investigators call these results preliminary.",
+    "ids": [
+     "PSI-20"
+    ]
+   },
+   {
+    "text": "At about 21.5% O2 and 20 cm/s flow in microgravity, a large cotton-fiberglass fabric burned for 420 s in concurrent flow versus 70 s in opposed flow, so ventilation direction relative to a fire strongly affects burn duration.",
+    "ids": [
+     "PSI-98"
+    ]
+   },
+   {
+    "text": "At about 22% O2 and 20 cm/s flow, thin silicone samples did not sustain burning in microgravity although several burned in 1 g, while SIBAL fabric spread over its full 29 cm length, so 1-g screening rankings do not carry over uniformly.",
+    "ids": [
+     "PSI-99"
+    ]
+   },
+   {
+    "text": "Extinguishing a hot flame of the hydrocarbon and DME fuels tested does not necessarily end reaction, because cool or warm flame regimes can persist beyond the hot-flame extinction limit, which matters for judging suppression success.",
+    "ids": [
+     "PSI-142",
+     "PSI-159"
+    ]
+   }
+  ],
+  "dontKnow": [
+   "Whether habitat solids such as fabrics, PMMA or silicone sustain or spread flame at 30-34% O2: 0 of 140 solid-material tests were run at this oxygen level, and the highest was 22.2%.",
+   "How fires behave under the buoyancy present at 0.38 g: there are 0 tests at Mars gravity, and PSI holds no partial-gravity combustion data.",
+   "Whether smoke detectors respond correctly to smoke produced at Mars-base oxygen, pressure and gravity: the smoke-particle investigations (PSI-101, PSI-102) state no oxygen or pressure levels and include 0 partial-gravity tests."
+  ],
+  "actions": [
+   "Extract the oxygen, pressure and diluent extinction limits from the FLEX droplet tables (12-34% O2) to estimate how much CO2, N2 or He dilution suppresses small liquid-fuel fires near 30-34% O2 at reduced pressure, treating the results as bounds for liquids only.",
+   "Design cabin ventilation and fire-response procedures on the assumption that shutting off airflow may not extinguish fires at 30%+ O2 and that concurrent flow lengthens burning, drawing on the ACME BRE and SAFFIRE-I results.",
+   "Treat the absence of solid-material tests above 22.2% O2 and of any 0.38 g data as a priority test gap, and plan elevated-oxygen, reduced-pressure, partial-gravity material and smoke-detection tests before relying on 1-g screening for a months-from-resupply base."
+  ],
+  "model": "claude-opus-5-5"
+ }
+}

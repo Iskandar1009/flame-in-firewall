@@ -1,0 +1,9 @@
+# Raw PSI records are large (about 70 MB) and re-downloadable: python3 tools/fetch_psi.py
+data/raw/investigations/
+data/raw/psi_combustion_search.json
+data/raw/small_tabular_files.json
+data/raw/samples/other_small_tables/
+__pycache__/
+.DS_Store
+.env*
+.vercel
