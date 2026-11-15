@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { ArrowDown, Flame as FlameIcon } from "lucide-react";
+import { ArrowDown, ArrowRight, Flame as FlameIcon } from "lucide-react";
 
 const Flame = dynamic(() => import("./Flame"), { ssr: false });
 
@@ -14,14 +14,14 @@ const PRESETS = [
   { label: "Orbit", g: 0, note: "No buoyancy: a dim blue sphere fed only by slow diffusion." },
 ];
 
-export default function Hero({ stats }: { stats: { label: string; value: string }[] }) {
+export default function Hero({ stats, finding }: { stats: { label: string; value: string }[]; finding: { solids: number; high: number; max: number } }) {
   const [g, setG] = useState(0);
   const nearest = PRESETS.reduce((a, b) => (Math.abs(b.g - g) < Math.abs(a.g - g) ? b : a));
 
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="stars absolute inset-0 opacity-70" aria-hidden />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-5 pb-14 pt-28 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pb-20 lg:pt-36">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-6 px-5 pb-14 pt-28 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:pb-20 lg:pt-32">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: "easeOut" }}>
           <div className="eyebrow mb-5 flex items-center gap-2">
             <FlameIcon size={14} /> NASA Space Apps 2026 · Flame in Freefall
@@ -44,7 +44,22 @@ export default function Hero({ stats }: { stats: { label: string; value: string 
               See the flammability map
             </a>
           </div>
-          <dl className="mt-12 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
+          <motion.a
+            href="#map"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="group mt-9 flex max-w-xl items-center gap-5 rounded-2xl border border-warn/35 bg-warn/[0.06] p-4 pr-5 transition hover:border-warn/70 hover:bg-warn/[0.1]"
+          >
+            <span className="display shrink-0 pl-1 text-5xl font-semibold leading-none text-warn">{finding.high}</span>
+            <span className="text-[15px] leading-snug text-fg">
+              <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-warn">What the data revealed</span>
+              <br />
+              of {finding.solids} tests on solid materials ran above {finding.max}% oxygen. The Moon base will hold 30% or more.
+            </span>
+            <ArrowRight size={18} className="ml-auto shrink-0 text-warn transition-transform group-hover:translate-x-1" />
+          </motion.a>
+          <dl className="mt-10 grid max-w-xl grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
             {stats.map((s, i) => (
               <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 + i * 0.08 }}>
                 <dt className="text-xs text-dim">{s.label}</dt>

@@ -23,6 +23,8 @@ export default function Dashboard() {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the URL after hydration
     if (id && BY_ID.has(id)) setOpen(id);
   }, []);
+  const solids = TESTS.filter((t) => t.phase === "solid");
+  const finding = { solids: solids.length, high: solids.filter((t) => t.o2 >= 30).length, max: Math.max(...solids.map((t) => t.o2)) };
   const stats = [
     { label: "PSI investigations", value: String(STUDIES.length) },
     { label: "tests mapped", value: TESTS.filter((t) => !t.matrix).length.toLocaleString() },
@@ -33,7 +35,7 @@ export default function Dashboard() {
     <>
       <Nav />
       <main>
-        <Hero stats={stats} />
+        <Hero stats={stats} finding={finding} />
         <Advisor onOpen={onOpen} />
         <FlamMap onOpen={onOpen} />
         <Gaps onOpen={onOpen} />
